@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure DALL-E 3 Image Generator</title>
+</head>
+<body>
+    <h1>Generate Image using DALL-E 3</h1>
+    
+    <form method="POST">
+        <label for="prompt">Enter text for image generation:</label><br>
+        <input type="text" id="prompt" name="prompt" required><br><br>
+        <input type="submit" value="Generate Image">
+    </form>
+
+    {% if img_data %}
+    <h2>Generated Image:</h2>
+    <img src="data:image/png;base64,{{ img_data }}" alt="Generated Image">
+    {% endif %}
+    
+</body>
+</html>
