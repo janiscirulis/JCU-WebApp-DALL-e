@@ -6,7 +6,7 @@ from PIL import Image
 import base64
 
 # Azure DALL-E 3 Endpoint and API Key
-API_URL = "https://ai-jcu-demo.openai.azure.com/openai/deployments/dall-e-3-deployment/completions?api-version=2024-05-01"
+API_URL = "https://ai-jcu-demo.openai.azure.com/openai/deployments/dall-e-3/images/generations?api-version=2024-02-01"
 API_KEY = "abd5d70f5a2a4df18aef7e8ccfeacf02"
 
 app = Flask(__name__)
