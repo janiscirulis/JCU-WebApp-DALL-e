@@ -5,17 +5,12 @@ from io import BytesIO
 from PIL import Image
 import base64
 import os
-from flask import Flask
 
 # Azure DALL-E 3 Endpoint and API Key
 API_URL = "https://ai-jcu-demo.openai.azure.com/openai/deployments/dall-e-3/images/generations?api-version=2024-02-01"
 API_KEY = os.getenv("API_KEY")
 
 app = Flask(__name__)
-
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
