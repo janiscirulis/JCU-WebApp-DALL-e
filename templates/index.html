@@ -3,21 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azure DALL-E 3 Image Generator</title>
+    <title>DALL-E-3 Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+        .image-result {
+            margin-top: 20px;
+        }
+        .image-result img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Generate Image using DALL-E 3</h1>
-    
+
+<div class="container">
+    <h1>DALL-E-3 Image Generator</h1>
     <form method="POST">
-        <label for="prompt">Enter text for image generation:</label><br>
-        <input type="text" id="prompt" name="prompt" required><br><br>
-        <input type="submit" value="Generate Image">
+        <input type="text" name="prompt" placeholder="Enter a description for the image" required>
+        <button type="submit">Generate Image</button>
     </form>
 
-    {% if img_data %}
-    <h2>Generated Image:</h2>
-    <img src="data:image/png;base64,{{ img_data }}" alt="Generated Image">
-    {% endif %}
-    
-</body>
-</html>
+    <!-- Display error message -->
+    {% if error %}
+    <div class="
