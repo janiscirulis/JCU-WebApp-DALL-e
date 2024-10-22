@@ -22,12 +22,16 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        input[type="text"] {
             width: 80%;
+            max-width: 600px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
             padding: 10px;
             margin: 10px 0;
             font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         button {
             padding: 10px 20px;
@@ -59,7 +63,8 @@
 <div class="container">
     <h1>DALL-E-3 Image Generator</h1>
     <form method="POST">
-        <input type="text" name="prompt" placeholder="Enter a description for the image" required>
+        <input type="text" name="prompt" placeholder="Enter a description for the image" required value="{{ prompt }}">
+        <textarea name="additional_comments" placeholder="Add additional comments (optional)">{{ additional_comments }}</textarea>
         <button type="submit">Generate Image</button>
     </form>
 
@@ -73,6 +78,7 @@
     <div class="image-result">
         <h2>Generated Image:</h2>
         <img src="{{ image_url }}" alt="Generated Image">
+        <button onclick="window.location.reload();">Generate New Image</button>
     </div>
     {% endif %}
 </div>
