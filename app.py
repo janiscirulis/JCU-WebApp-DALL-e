@@ -30,18 +30,22 @@ def home():
     if request.method == 'POST':
         # Get the prompt from the form submission
         prompt = request.form.get('prompt')
+        additional_comments = request.form.get('additional_comments', '')
+        
         if prompt:
+            # Create a full prompt including additional comments
+            full_prompt = f"{prompt} {additional_comments}".strip()
             # Generate the image using the Azure API
-            result = generate_image(prompt)
+            result = generate_image(full_prompt)
             
             # Handle the result, including any errors
             if 'error' in result:
-                return render_template('index.html', error=result['error'])
+                return render_template('index.html', error=result['error'], prompt=prompt)
             else:
                 # Extract the image URL or relevant data from the response
                 image_url = result.get('data')[0].get('url')  # Example of handling response
                 
-                return render_template('index.html', image_url=image_url)
+                return render_template('index.html', image_url=image_url, prompt=prompt, additional_comments=additional_comments)
         else:
             return render_template('index.html', error="Please provide a prompt.")
     
