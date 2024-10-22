@@ -89,6 +89,9 @@
             font-weight: 700;
             color: #007bff;
         }
+        .edit-prompt {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -109,10 +112,16 @@
     <!-- Display generated images -->
     <div class="image-list">
         <h3>Generated Images:</h3>
-        {% for image in generated_images %}
+        {% for index, image in enumerate(generated_images) %}
         <div class="image-item">
             <strong class="prompt">Prompt:</strong> {{ image.prompt }}<br>
             <img src="{{ image.url }}" alt="Generated Image">
+            <form method="POST" class="edit-prompt">
+                <input type="text" name="new_prompt" placeholder="Edit prompt" required>
+                <textarea name="additional_comments" placeholder="Add additional comments (optional)"></textarea>
+                <input type="hidden" name="image_index" value="{{ index }}">
+                <button type="submit" name="update_image">Update Image</button>
+            </form>
         </div>
         {% endfor %}
     </div>
