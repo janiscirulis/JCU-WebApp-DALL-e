@@ -20,12 +20,13 @@ def generate_image(prompt):
         "prompt": prompt,
         "size": "1024x1024"  # You can adjust the image size as needed
     }
-    response = requests.post(endpoint, json=data, headers=headers)
     
-    if response.status_code == 200:
+    try:
+        response = requests.post(endpoint, json=data, headers=headers)
+        response.raise_for_status()  # Raise an error for bad responses
         return response.json()
-    else:
-        return {"error": response.text}
+    except requests.exceptions.RequestException as e:
+        return {"error": str(e)}
 
 # Route to display HTML form for entering the prompt
 @app.route('/', methods=['GET', 'POST'])
