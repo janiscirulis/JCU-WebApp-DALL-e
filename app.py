@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
@@ -6,6 +6,9 @@ app = Flask(__name__)
 # Azure OpenAI API details
 endpoint = "https://ai-jcu-demo.openai.azure.com/openai/deployments/dall-e-3/images/generations?api-version=2024-02-01"
 api_key = "abd5d70f5a2a4df18aef7e8ccfeacf02"
+
+# List to store generated images and prompts
+generated_images = []
 
 # Function to generate image from Azure AI
 def generate_image(prompt):
@@ -28,7 +31,7 @@ def generate_image(prompt):
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        # Get the prompt from the form submission
+        # Get the prompt and additional comments from the form submission
         prompt = request.form.get('prompt')
         additional_comments = request.form.get('additional_comments', '')
         
@@ -40,16 +43,19 @@ def home():
             
             # Handle the result, including any errors
             if 'error' in result:
-                return render_template('index.html', error=result['error'], prompt=prompt)
+                return render_template('index.html', error=result['error'], generated_images=generated_images)
             else:
-                # Extract the image URL or relevant data from the response
-                image_url = result.get('data')[0].get('url')  # Example of handling response
+                # Extract the image URL from the response
+                image_url = result.get('data')[0].get('url')
                 
-                return render_template('index.html', image_url=image_url, prompt=prompt, additional_comments=additional_comments)
+                # Add the new image and prompt to the list
+                generated_images.append({'prompt': full_prompt, 'url': image_url})
+                
+                return render_template('index.html', generated_images=generated_images)
         else:
             return render_template('index.html', error="Please provide a prompt.")
     
-    return render_template('index.html')
+    return render_template('index.html', generated_images=generated_images)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
