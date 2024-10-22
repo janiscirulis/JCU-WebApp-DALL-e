@@ -4,10 +4,11 @@ import json
 from io import BytesIO
 from PIL import Image
 import base64
+import os
 
 # Azure DALL-E 3 Endpoint and API Key
 API_URL = "https://ai-jcu-demo.openai.azure.com/openai/deployments/dall-e-3/images/generations?api-version=2024-02-01"
-API_KEY = "abd5d70f5a2a4df18aef7e8ccfeacf02"
+API_KEY = os.getenv("API_KEY")
 
 app = Flask(__name__)
 
