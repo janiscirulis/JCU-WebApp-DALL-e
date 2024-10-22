@@ -5,6 +5,8 @@ from io import BytesIO
 from PIL import Image
 import base64
 import os
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 # Azure DALL-E 3 Endpoint and API Key
 API_URL = "https://ai-jcu-demo.openai.azure.com/openai/deployments/dall-e-3/images/generations?api-version=2024-02-01"
