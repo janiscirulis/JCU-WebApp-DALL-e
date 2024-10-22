@@ -30,6 +30,7 @@ def generate_image(prompt):
 # Route to display HTML form for entering the prompt
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    global generated_images  # Use global variable to reset images on page load
     if request.method == 'POST':
         # Check if it's an image update or a new image generation
         if 'update_image' in request.form:
@@ -65,9 +66,11 @@ def home():
                 image_url = result.get('data')[0].get('url')
                 generated_images.append({'prompt': full_prompt, 'url': image_url})
         
-        return render_template('index.html', generated_images=generated_images)
+        return render_template('index.html', generated_images=[])
 
-    return render_template('index.html', generated_images=generated_images)
+    # Reset generated images on a new session
+    generated_images = []
+    return render_template('index.html', generated_images=[])
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
