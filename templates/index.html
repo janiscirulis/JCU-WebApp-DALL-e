@@ -65,4 +65,17 @@
 
     <!-- Display error message -->
     {% if error %}
-    <div class="
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <!-- Display generated image -->
+    {% if image_url %}
+    <div class="image-result">
+        <h2>Generated Image:</h2>
+        <img src="{{ image_url }}" alt="Generated Image">
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
