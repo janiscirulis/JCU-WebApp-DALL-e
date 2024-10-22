@@ -36,11 +36,10 @@ def home():
         if 'update_image' in request.form:
             index = int(request.form.get('image_index'))
             new_prompt = request.form.get('new_prompt')
-            additional_comments = request.form.get('additional_comments', '')
             
             # Update the existing prompt
             if generated_images:
-                full_prompt = f"{new_prompt} {additional_comments}".strip()
+                full_prompt = new_prompt.strip()
                 result = generate_image(full_prompt)
                 
                 if 'error' in result:
@@ -53,10 +52,9 @@ def home():
         else:
             # Handle new image generation
             prompt = request.form.get('prompt')
-            additional_comments = request.form.get('additional_comments', '')
             
             if prompt:
-                full_prompt = f"{prompt} {additional_comments}".strip()
+                full_prompt = prompt.strip()
                 result = generate_image(full_prompt)
                 
                 if 'error' in result:
