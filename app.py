@@ -31,30 +31,42 @@ def generate_image(prompt):
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        # Get the prompt and additional comments from the form submission
-        prompt = request.form.get('prompt')
-        additional_comments = request.form.get('additional_comments', '')
-        
-        if prompt:
-            # Create a full prompt including additional comments
-            full_prompt = f"{prompt} {additional_comments}".strip()
-            # Generate the image using the Azure API
-            result = generate_image(full_prompt)
+        # Check if it's an image update or a new image generation
+        if 'update_image' in request.form:
+            index = int(request.form.get('image_index'))
+            new_prompt = request.form.get('new_prompt')
+            additional_comments = request.form.get('additional_comments', '')
             
-            # Handle the result, including any errors
-            if 'error' in result:
-                return render_template('index.html', error=result['error'], generated_images=generated_images)
-            else:
-                # Extract the image URL from the response
-                image_url = result.get('data')[0].get('url')
+            # Update the existing prompt
+            if generated_images:
+                full_prompt = f"{new_prompt} {additional_comments}".strip()
+                result = generate_image(full_prompt)
                 
-                # Add the new image and prompt to the list
-                generated_images.append({'prompt': full_prompt, 'url': image_url})
+                if 'error' in result:
+                    return render_template('index.html', error=result['error'], generated_images=generated_images)
                 
-                return render_template('index.html', generated_images=generated_images)
+                # Update the image URL in the list
+                generated_images[index]['url'] = result.get('data')[0].get('url')
+                generated_images[index]['prompt'] = full_prompt
+            
         else:
-            return render_template('index.html', error="Please provide a prompt.")
-    
+            # Handle new image generation
+            prompt = request.form.get('prompt')
+            additional_comments = request.form.get('additional_comments', '')
+            
+            if prompt:
+                full_prompt = f"{prompt} {additional_comments}".strip()
+                result = generate_image(full_prompt)
+                
+                if 'error' in result:
+                    return render_template('index.html', error=result['error'], generated_images=generated_images)
+                
+                # Add the new image to the list
+                image_url = result.get('data')[0].get('url')
+                generated_images.append({'prompt': full_prompt, 'url': image_url})
+        
+        return render_template('index.html', generated_images=generated_images)
+
     return render_template('index.html', generated_images=generated_images)
 
 if __name__ == "__main__":
