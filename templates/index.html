@@ -38,10 +38,15 @@
             margin-bottom: 20px;
         }
         .option-header {
-            font-size: 0.9rem;
-            color: #000;
-            margin-top: 10px; /* Reduced margin for compactness */
-            text-align: left;
+            font-size: 1.1rem;  /* Increased font size for better visibility */
+            color: #007bff;     /* Changed color to match the theme */
+            font-weight: bold;   /* Make the text bold */
+            margin-top: 10px;   /* Slight margin for spacing */
+            text-align: center;  /* Center the header text */
+            padding: 10px;       /* Padding for better spacing */
+            border: 2px solid #007bff; /* Border around the headers */
+            border-radius: 5px;  /* Slightly rounded corners */
+            background-color: #f0f8ff; /* Light background color */
         }
         input[type="text"] {
             width: 100%;
@@ -69,7 +74,6 @@
             flex: 1;
             margin: 0 10px; /* Space between columns */
             padding: 10px; /* Padding around each column */
-            background-color: #f9f9f9; /* Light background for columns */
         }
         .options label {
             font-size: 0.85rem; /* Smaller font size for choice text */
@@ -141,7 +145,7 @@
 
         <div class="options">
             <div>
-                <div class="option-header">Image Size</div>
+                <div class="option-header">Size</div>
                 <label>
                     <input type="radio" name="size" value="1024x1024" {% if selected_size == '1024x1024' %}checked{% endif %}> 1024 x 1024
                 </label>
@@ -154,7 +158,7 @@
             </div>
 
             <div>
-                <div class="option-header">Image Style</div>
+                <div class="option-header">Style</div>
                 <label>
                     <input type="radio" name="style" value="vivid" {% if selected_style == 'vivid' %}checked{% endif %}> Vivid
                 </label>
@@ -164,7 +168,7 @@
             </div>
 
             <div>
-                <div class="option-header">Image Quality</div>
+                <div class="option-header">Quality</div>
                 <label>
                     <input type="radio" name="quality" value="standard" {% if selected_quality == 'standard' %}checked{% endif %}> Standard
                 </label>
