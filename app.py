@@ -8,14 +8,16 @@ endpoint = "https://ai-jcu-demo.openai.azure.com/openai/deployments/dall-e-3/ima
 api_key = "abd5d70f5a2a4df18aef7e8ccfeacf02"
 
 # Function to generate image from Azure AI
-def generate_image(prompt):
+def generate_image(prompt, size, style, quality):
     headers = {
         "Content-Type": "application/json",
         "api-key": api_key
     }
     data = {
         "prompt": prompt,
-        "size": "1024x1024"  # You can adjust the image size as needed
+        "size": size,
+        "style": style,
+        "quality": quality
     }
     response = requests.post(endpoint, json=data, headers=headers)
     
@@ -28,11 +30,15 @@ def generate_image(prompt):
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        # Get the prompt from the form submission
+        # Get the prompt, size, style, and quality from the form submission
         prompt = request.form.get('prompt')
+        size = request.form.get('size')
+        style = request.form.get('style')
+        quality = request.form.get('quality')
+        
         if prompt:
-            # Generate the image using the Azure API
-            result = generate_image(prompt)
+            # Generate the image using the Azure API with size, style, and quality
+            result = generate_image(prompt, size, style, quality)
             
             # Handle the result, including any errors
             if 'error' in result:
