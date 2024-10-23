@@ -63,7 +63,7 @@
         .option-header {
             font-size: 0.9rem;  /* Neutral font size */
             color: #333;      /* Neutral color */
-            font-weight: 500; /* Normal weight */
+            font-weight: bold; /* Normal weight */
             margin-top: 0;   /* No top margin */
             text-align: left;  /* Center the header text */
             padding: 5px;       /* Padding for better spacing */
@@ -160,13 +160,13 @@
             <div>
                 <div class="option-header">Size</div>
                 <label>
-                    <input type="radio" name="size" value="1024x1024" {% if selected_size == '1024x1024' %}checked{% endif %}> 1024 x 1024
+                    <input type="radio" name="size" value="Square" {% if selected_size == 'Square' %}checked{% endif %}> Square
                 </label>
                 <label>
-                    <input type="radio" name="size" value="1024x1792" {% if selected_size == '1024x1792' %}checked{% endif %}> 1024 x 1792
+                    <input type="radio" name="size" value="Portrait" {% if selected_size == 'Portrait' %}checked{% endif %}> Portrait
                 </label>
                 <label>
-                    <input type="radio" name="size" value="1792x1024" {% if selected_size == '1792x1024' %}checked{% endif %}> 1792 x 1024
+                    <input type="radio" name="size" value="Landscape" {% if selected_size == 'Landscape' %}checked{% endif %}> Landscape
                 </label>
             </div>
 
