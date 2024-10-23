@@ -38,8 +38,8 @@
             margin-bottom: 20px;
         }
         .option-header {
-            font-size: 0.9rem; /* Smaller font size */
-            color: #000; /* Black color */
+            font-size: 0.9rem;
+            color: #000;
             margin-top: 15px;
             text-align: left;
         }
@@ -48,11 +48,11 @@
             padding: 10px;
             margin: 10px 0;
             font-size: 1rem;
-            border: 2px solid #007bff;  /* Change border color */
+            border: 2px solid #007bff;
             border-radius: 8px;
             box-sizing: border-box;
-            background-color: #ffffff;  /* Ensure dropdown has a white background */
-            color: #333;  /* Change text color for visibility */
+            background-color: #ffffff;
+            color: #333;
             transition: border-color 0.3s, background-color 0.3s;
         }
         input[type="text"]:focus, select:focus {
@@ -67,8 +67,8 @@
             margin: 10px 0;
         }
         .options select {
-            width: 30%; /* Smaller width for each dropdown */
-            font-size: 0.9rem; /* Smaller font size */
+            width: 30%;
+            font-size: 0.9rem;
         }
         button {
             width: 100%;
@@ -104,7 +104,6 @@
             font-size: 0.9rem;
             color: #888;
         }
-        /* Responsive Design */
         @media (max-width: 600px) {
             h1 {
                 font-size: 1.5rem;
@@ -116,7 +115,7 @@
                 font-size: 1rem;
             }
             .options select {
-                font-size: 0.8rem; /* Smaller font size for mobile */
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -134,25 +133,25 @@
             <div>
                 <div class="option-header">Image Size</div>
                 <select name="size" id="size" required>
-                    <option value="1024x1024" {% if request.form.get('size') == '1024x1024' %}selected{% endif %}>1024 x 1024</option>
-                    <option value="1024x1792" {% if request.form.get('size') == '1024x1792' %}selected{% endif %}>1024 x 1792</option>
-                    <option value="1792x1024" {% if request.form.get('size') == '1792x1024' %}selected{% endif %}>1792 x 1024</option>
+                    <option value="1024x1024" {% if selected_size == '1024x1024' %}selected{% endif %}>1024 x 1024</option>
+                    <option value="1024x1792" {% if selected_size == '1024x1792' %}selected{% endif %}>1024 x 1792</option>
+                    <option value="1792x1024" {% if selected_size == '1792x1024' %}selected{% endif %}>1792 x 1024</option>
                 </select>
             </div>
 
             <div>
                 <div class="option-header">Image Style</div>
                 <select name="style" id="style" required>
-                    <option value="vivid" {% if request.form.get('style') == 'vivid' %}selected{% endif %}>Vivid</option>
-                    <option value="natural" {% if request.form.get('style') == 'natural' %}selected{% endif %}>Natural</option>
+                    <option value="vivid" {% if selected_style == 'vivid' %}selected{% endif %}>Vivid</option>
+                    <option value="natural" {% if selected_style == 'natural' %}selected{% endif %}>Natural</option>
                 </select>
             </div>
 
             <div>
                 <div class="option-header">Image Quality</div>
                 <select name="quality" id="quality" required>
-                    <option value="standard" {% if request.form.get('quality') == 'standard' %}selected{% endif %}>Standard</option>
-                    <option value="hd" {% if request.form.get('quality') == 'hd' %}selected{% endif %}>HD</option>
+                    <option value="standard" {% if selected_quality == 'standard' %}selected{% endif %}>Standard</option>
+                    <option value="hd" {% if selected_quality == 'hd' %}selected{% endif %}>HD</option>
                 </select>
             </div>
         </div>
