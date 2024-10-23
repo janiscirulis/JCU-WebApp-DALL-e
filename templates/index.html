@@ -160,7 +160,7 @@
             <div>
                 <div class="option-header">Layout</div>
                 <label>
-                    <input type="radio" name="size" value="Square" {% if selected_size == 'Square' %}checked{% endif %}> Square
+                    <input type="radio" name="size" value="Square" {% if selected_size == 'Square' or not selected_size %}checked{% endif %}> Square
                 </label>
                 <label>
                     <input type="radio" name="size" value="Portrait" {% if selected_size == 'Portrait' %}checked{% endif %}> Portrait
