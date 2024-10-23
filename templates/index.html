@@ -37,16 +37,26 @@
             color: #555;
             margin-bottom: 20px;
         }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .options div {
+            flex: 1;
+            margin: 0 10px; /* Space between columns */
+            padding: 10px; /* Padding around each column */
+            border: 2px solid #007bff; /* Border around each column */
+            border-radius: 5px; /* Slightly rounded corners */
+            background-color: #f0f8ff; /* Light background color */
+        }
         .option-header {
             font-size: 1.1rem;  /* Increased font size for better visibility */
             color: #007bff;     /* Changed color to match the theme */
             font-weight: bold;   /* Make the text bold */
             margin-top: 10px;   /* Slight margin for spacing */
             text-align: center;  /* Center the header text */
-            padding: 10px;       /* Padding for better spacing */
-            border: 2px solid #007bff; /* Border around the headers */
-            border-radius: 5px;  /* Slightly rounded corners */
-            background-color: #f0f8ff; /* Light background color */
+            padding: 5px;       /* Padding for better spacing */
         }
         input[type="text"] {
             width: 100%;
@@ -64,16 +74,6 @@
             border-color: #007bff;
             background-color: #fff;
             outline: none;
-        }
-        .options {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-        }
-        .options div {
-            flex: 1;
-            margin: 0 10px; /* Space between columns */
-            padding: 10px; /* Padding around each column */
         }
         .options label {
             font-size: 0.85rem; /* Smaller font size for choice text */
