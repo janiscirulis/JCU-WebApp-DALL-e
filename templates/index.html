@@ -6,7 +6,7 @@
     <title>CiiAI Image Generator</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -14,102 +14,97 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #f0f0f5;
+            background-color: #fafafa;
+            color: #333;
         }
         .container {
             text-align: center;
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
             margin: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         h1 {
-            font-size: 2.2rem;
-            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
         p {
+            font-size: 1rem;
             color: #555;
-            font-size: 1.1rem;
             margin-bottom: 20px;
         }
         input[type="text"], select {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             margin: 10px 0;
             font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             box-sizing: border-box;
-            transition: border-color 0.3s;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s, background-color 0.3s;
         }
         input[type="text"]:focus, select:focus {
             border-color: #007bff;
+            background-color: #fff;
             outline: none;
         }
         .options {
             display: flex;
             justify-content: space-between;
             gap: 10px;
-            margin: 10px 0;
         }
         .options select {
-            width: 32%;
-            padding: 10px;
+            width: 33%;
             font-size: 0.9rem;
         }
         button {
-            padding: 15px 25px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            background-color: #28a745;
-            color: white;
+            width: 100%;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background-color: #007bff;
+            color: #fff;
             border: none;
-            border-radius: 50px;
+            border-radius: 30px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
         }
         button:hover {
-            background-color: #218838;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
         }
         .error {
-            color: red;
-            margin-top: 20px;
+            color: #ff4d4f;
+            margin-top: 15px;
         }
         .image-result {
             margin-top: 20px;
-            text-align: center;
         }
         .image-result img {
             max-width: 100%;
-            height: auto;
             border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         footer {
-            margin-top: 40px;
+            margin-top: 30px;
             font-size: 0.9rem;
-            color: #777;
+            color: #888;
         }
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .options {
-                flex-direction: column;
-            }
+        @media (max-width: 600px) {
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
             p {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             button {
                 font-size: 1rem;
-                padding: 12px 20px;
             }
         }
     </style>
@@ -118,54 +113,46 @@
 
 <div class="container">
     <h1>CiiAI Image Generator</h1>
-    <p>Let me know what's in your mind 📎</p>
+    <p>Generate beautiful images with a simple description!</p>
     
     <form method="POST">
-        <!-- Input for image prompt -->
         <input type="text" name="prompt" placeholder="Enter a description for the image" required>
         
-        <!-- Compact options for image size, style, and quality -->
         <div class="options">
-            <!-- Select for image size -->
             <select name="size" id="size" required>
-                <option value="1024x1024">1024 x 1024 (Square)</option>
-                <option value="1024x1792">1024 x 1792 (Portrait)</option>
-                <option value="1792x1024">1792 x 1024 (Landscape)</option>
+                <option value="1024x1024">1024 x 1024</option>
+                <option value="1024x1792">1024 x 1792</option>
+                <option value="1792x1024">1792 x 1024</option>
             </select>
 
-            <!-- Select for image style -->
             <select name="style" id="style" required>
                 <option value="vivid">Vivid</option>
                 <option value="natural">Natural</option>
             </select>
 
-            <!-- Select for image quality -->
             <select name="quality" id="quality" required>
                 <option value="standard">Standard</option>
                 <option value="hd">HD</option>
             </select>
         </div>
         
-        <!-- Submit button -->
-        <button type="submit">Generate Image</button>
+        <button type="submit">Generate</button>
     </form>
 
-    <!-- Display error message -->
     {% if error %}
     <div class="error">{{ error }}</div>
     {% endif %}
 
-    <!-- Display generated image -->
     {% if image_url %}
     <div class="image-result">
-        <h2>Generated Image:</h2>
+        <h2>Your Image:</h2>
         <img src="{{ image_url }}" alt="Generated Image">
     </div>
     {% endif %}
 </div>
 
 <footer>
-    <p>&copy; CiiAI is based on DALL-E-3</p>
+    <p>&copy; 2024 CiiAI - Powered by DALL-E 3</p>
 </footer>
 
 </body>
