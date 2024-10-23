@@ -55,11 +55,8 @@
             gap: 10px;
             margin: 10px 0;
         }
-        .options div {
-            width: 32%;
-        }
         .options select {
-            width: 100%;
+            width: 32%;
             padding: 10px;
             font-size: 0.9rem;
         }
@@ -91,21 +88,6 @@
         .image-result img {
             max-width: 100%;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        .previous-images {
-            margin-top: 40px;
-        }
-        .previous-images h2 {
-            font-size: 1.6rem;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .previous-images img {
-            max-width: 100%;
-            height: auto;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
@@ -144,33 +126,24 @@
         
         <!-- Compact options for image size, style, and quality -->
         <div class="options">
-            <!-- Image size selection with label -->
-            <div>
-                <label for="size">Image Size</label>
-                <select name="size" id="size" required>
-                    <option value="1024x1024">1024 x 1024 (Square)</option>
-                    <option value="1024x1792">1024 x 1792 (Portrait)</option>
-                    <option value="1792x1024">1792 x 1024 (Landscape)</option>
-                </select>
-            </div>
+            <!-- Select for image size -->
+            <select name="size" id="size" required>
+                <option value="1024x1024">1024 x 1024 (Square)</option>
+                <option value="1024x1792">1024 x 1792 (Portrait)</option>
+                <option value="1792x1024">1792 x 1024 (Landscape)</option>
+            </select>
 
-            <!-- Image style selection with label -->
-            <div>
-                <label for="style">Image Style</label>
-                <select name="style" id="style" required>
-                    <option value="vivid">Vivid</option>
-                    <option value="natural">Natural</option>
-                </select>
-            </div>
+            <!-- Select for image style -->
+            <select name="style" id="style" required>
+                <option value="vivid">Vivid</option>
+                <option value="natural">Natural</option>
+            </select>
 
-            <!-- Image quality selection with label -->
-            <div>
-                <label for="quality">Image Quality</label>
-                <select name="quality" id="quality" required>
-                    <option value="standard">Standard</option>
-                    <option value="hd">HD</option>
-                </select>
-            </div>
+            <!-- Select for image quality -->
+            <select name="quality" id="quality" required>
+                <option value="standard">Standard</option>
+                <option value="hd">HD</option>
+            </select>
         </div>
         
         <!-- Submit button -->
@@ -187,16 +160,6 @@
     <div class="image-result">
         <h2>Generated Image:</h2>
         <img src="{{ image_url }}" alt="Generated Image">
-    </div>
-    {% endif %}
-    
-    <!-- Display previous images -->
-    {% if previous_images %}
-    <div class="previous-images">
-        <h2>Previously Generated Images:</h2>
-        {% for img_url in previous_images %}
-        <img src="{{ img_url }}" alt="Previous Image">
-        {% endfor %}
     </div>
     {% endif %}
 </div>
