@@ -38,9 +38,8 @@
             margin-bottom: 20px;
         }
         .option-header {
-            font-weight: bold;
-            font-size: 1rem;
-            color: #007bff;
+            font-size: 0.9rem; /* Smaller font size */
+            color: #000; /* Black color */
             margin-top: 15px;
             text-align: left;
         }
@@ -134,7 +133,7 @@
             <div>
                 <div class="option-header">Image Size</div>
                 <select name="size" id="size" required>
-                    <option value="1024x1024">1024 x 1024</option>
+                    <option value="1024x1024" selected>1024 x 1024</option>
                     <option value="1024x1792">1024 x 1792</option>
                     <option value="1792x1024">1792 x 1024</option>
                 </select>
@@ -143,7 +142,7 @@
             <div>
                 <div class="option-header">Image Style</div>
                 <select name="style" id="style" required>
-                    <option value="vivid">Vivid</option>
+                    <option value="vivid" selected>Vivid</option>
                     <option value="natural">Natural</option>
                 </select>
             </div>
@@ -151,7 +150,7 @@
             <div>
                 <div class="option-header">Image Quality</div>
                 <select name="quality" id="quality" required>
-                    <option value="standard">Standard</option>
+                    <option value="standard" selected>Standard</option>
                     <option value="hd">HD</option>
                 </select>
             </div>
