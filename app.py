@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
@@ -29,29 +29,28 @@ def generate_image(prompt, size, style, quality):
 # Route to display HTML form for entering the prompt
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method == 'POST':
-        # Get the prompt, size, style, and quality from the form submission
-        prompt = request.form.get('prompt')
-        size = request.form.get('size')
-        style = request.form.get('style')
-        quality = request.form.get('quality')
-        
-        if prompt:
-            # Generate the image using the Azure API with size, style, and quality
-            result = generate_image(prompt, size, style, quality)
-            
-            # Handle the result, including any errors
-            if 'error' in result:
-                return render_template('index.html', error=result['error'])
-            else:
-                # Extract the image URL or relevant data from the response
-                image_url = result.get('data')[0].get('url')  # Example of handling response
-                
-                return render_template('index.html', image_url=image_url)
-        else:
-            return render_template('index.html', error="Please provide a prompt.")
+    selected_size = request.form.get('size', '1024x1024')  # Default value
+    selected_style = request.form.get('style', 'vivid')    # Default value
+    selected_quality = request.form.get('quality', 'standard')  # Default value
     
-    return render_template('index.html')
+    if request.method == 'POST':
+        prompt = request.form.get('prompt')
+
+        if prompt:
+            result = generate_image(prompt, selected_size, selected_style, selected_quality)
+
+            if 'error' in result:
+                return render_template('index.html', error=result['error'],
+                                       size=selected_size, style=selected_style, quality=selected_quality)
+            else:
+                image_url = result.get('data')[0].get('url')  
+                return render_template('index.html', image_url=image_url,
+                                       size=selected_size, style=selected_style, quality=selected_quality)
+        else:
+            return render_template('index.html', error="Please provide a prompt.",
+                                   size=selected_size, style=selected_style, quality=selected_quality)
+
+    return render_template('index.html', size=selected_size, style=selected_style, quality=selected_quality)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
