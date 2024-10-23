@@ -14,27 +14,35 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #fafafa;
+            background: linear-gradient(to right, #e0f7fa, #ffe0b2);
             color: #333;
         }
         .container {
             text-align: center;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 10px;
             width: 100%;
             max-width: 500px;
             margin: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         h1 {
             font-size: 1.8rem;
             margin-bottom: 10px;
+            color: #007bff;
         }
         p {
             font-size: 1rem;
             color: #555;
             margin-bottom: 20px;
+        }
+        .option-header {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #007bff;
+            margin-top: 15px;
+            text-align: left;
         }
         input[type="text"], select {
             width: 100%;
@@ -54,19 +62,19 @@
         }
         .options {
             display: flex;
-            justify-content: space-between;
-            gap: 10px;
+            flex-direction: column;
+            align-items: stretch;
+            margin: 10px 0;
         }
         .options select {
-            width: 33%;
-            font-size: 0.9rem;
+            margin-top: 5px;
         }
         button {
             width: 100%;
             padding: 12px 0;
             font-size: 1.1rem;
             font-weight: 600;
-            background-color: #007bff;
+            background-color: #28a745;
             color: #fff;
             border: none;
             border-radius: 30px;
@@ -74,9 +82,9 @@
             transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #218838;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
         }
         .error {
             color: #ff4d4f;
@@ -117,19 +125,22 @@
     
     <form method="POST">
         <input type="text" name="prompt" placeholder="Enter a description for the image" required>
-        
+
         <div class="options">
+            <div class="option-header">Image Size</div>
             <select name="size" id="size" required>
                 <option value="1024x1024">1024 x 1024</option>
                 <option value="1024x1792">1024 x 1792</option>
                 <option value="1792x1024">1792 x 1024</option>
             </select>
 
+            <div class="option-header">Image Style</div>
             <select name="style" id="style" required>
                 <option value="vivid">Vivid</option>
                 <option value="natural">Natural</option>
             </select>
 
+            <div class="option-header">Image Quality</div>
             <select name="quality" id="quality" required>
                 <option value="standard">Standard</option>
                 <option value="hd">HD</option>
