@@ -43,7 +43,7 @@
             margin-top: 15px;
             text-align: left;
         }
-        input[type="text"], input[type="radio"] {
+        input[type="text"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -62,18 +62,26 @@
         }
         .options {
             display: flex;
-            justify-content: space-between; /* Space out columns */
+            justify-content: space-between;
             margin: 10px 0;
         }
         .options div {
-            flex: 1; /* Each column takes equal space */
-            margin: 0 5px; /* Space between columns */
-            text-align: left; /* Align text to the left */
+            flex: 1;
+            margin: 0 10px; /* Space between columns */
+            text-align: left;
+            padding: 10px; /* Padding around each column */
+            border: 1px solid #ccc; /* Border for visual separation */
+            border-radius: 8px; /* Rounded corners for columns */
+            background-color: #f9f9f9; /* Light background for columns */
         }
         .options label {
             font-size: 0.85rem; /* Smaller font size for choice text */
-            display: block; /* Ensure each label takes full width */
+            display: flex; /* Flex to align radio button with text */
+            align-items: center; /* Center items vertically */
             margin: 5px 0; /* Space between radio buttons */
+        }
+        .options input[type="radio"] {
+            margin-right: 10px; /* Space between radio button and text */
         }
         button {
             width: 100%;
