@@ -29,6 +29,7 @@ def generate_image(prompt, size, style, quality):
 # Route to display HTML form for entering the prompt
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    # Get selected values with defaults
     selected_size = request.form.get('size', '1024x1024')  # Default value
     selected_style = request.form.get('style', 'vivid')    # Default value
     selected_quality = request.form.get('quality', 'standard')  # Default value
@@ -41,16 +42,16 @@ def home():
 
             if 'error' in result:
                 return render_template('index.html', error=result['error'],
-                                       size=selected_size, style=selected_style, quality=selected_quality)
+                                       selected_size=selected_size, selected_style=selected_style, selected_quality=selected_quality)
             else:
                 image_url = result.get('data')[0].get('url')  
                 return render_template('index.html', image_url=image_url,
-                                       size=selected_size, style=selected_style, quality=selected_quality)
+                                       selected_size=selected_size, selected_style=selected_style, selected_quality=selected_quality)
         else:
             return render_template('index.html', error="Please provide a prompt.",
-                                   size=selected_size, style=selected_style, quality=selected_quality)
+                                   selected_size=selected_size, selected_style=selected_style, selected_quality=selected_quality)
 
-    return render_template('index.html', size=selected_size, style=selected_style, quality=selected_quality)
+    return render_template('index.html', selected_size=selected_size, selected_style=selected_style, selected_quality=selected_quality)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
