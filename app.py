@@ -4,8 +4,8 @@ import requests
 app = Flask(__name__)
 
 # Azure OpenAI API details
-endpoint = "https://ai-jcu-demo.openai.azure.com/openai/deployments/dall-e-3/images/generations?api-version=2024-02-01"
-api_key = "abd5d70f5a2a4df18aef7e8ccfeacf02"
+endpoint = "https://janis-m838a1x8-eastus.openai.azure.com/openai/deployments/dall-e-3/images/generations?api-version=2024-02-01"
+api_key = "2WyctW6r7j7r9ysba1dOaDLGrvyAX0UXepT5N3UXsqTiZjH8ujmOJQQJ99BCACYeBjFXJ3w3AAAAACOGrhTY"
 
 # Function to generate image from Azure AI
 def generate_image(prompt, size, style, quality):
